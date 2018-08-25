@@ -17,6 +17,7 @@ $user = unserialize($_SESSION['logueado']);
 
 $cliente_id = $user->getCliente_id();
 $usuario = $user->getUsuario();
+$nivel = $user->getNivel();
 
 
 if (isset($_REQUEST['exp'])) {
@@ -64,7 +65,7 @@ if (isset($_REQUEST['exp'])) {
 
     if ($radioEstado) {
         if ($radioEstado == 'todos') {
-            $siniestros = Joined::getSiniestrosJoinedTodos($cliente_id);
+            $siniestros = Joined::getSiniestrosJoinedByNivel($cliente_id,$nivel);
             require_once $_SERVER['DOCUMENT_ROOT'] . '/View/listadoExpediente/index.php';
         } else if ($radioEstado == true) {
             $siniestros = Joined::getSiniestrosJoinedEstado($radioEstado, $cliente_id);
