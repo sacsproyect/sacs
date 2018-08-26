@@ -166,6 +166,16 @@ h2 {
     color: white;
 }
 
+.select-styleCompaniaBuscar {
+    border: 1px solid #014676;
+    width: 100%;
+    overflow: hidden;
+    height: 24px;/* CAMBIADO PARA ADAPTARLO AL TAMAÑO*/ 
+    background: #014676;
+    font-size: 14px;
+    color: white;
+}
+
 .footer {
     position: absolute!important;
     right: 0;
