@@ -240,7 +240,29 @@ class Joined implements JsonSerializable {
         }
         //$consulta->closeCursor();
         return $siniestros;
-    } 
+    }
+    
+    public static function getSiniestrosJoinedEstadoByNivel($radioEstado, $cliente_id, $nivel) {
+          $nivel = $nivel . "%";
+        $conexion = Conexion::connectDB();
+        $select = "SELECT * FROM siniestro WHERE activo = $radioEstado AND clisin = $cliente_id AND nivel LIKE '$nivel'";
+        $consulta = $conexion->query($select);
+        ///$consulta->execute(array($radioEstado, $cliente_id));
+        $siniestros = [];
+         
+        while ($registro = $consulta->fetchObject()) {
+        $siniestros[] = new Joined($registro->id, $registro->persin, $registro->trasin, $registro->fensin
+                    , $registro->clisin, $registro->agesin, $registro->asesin, $registro->dassin
+                    , $registro->passin, $registro->tassin, $registro->tassin2, $registro->polsin
+                    , $registro->numsin, $registro->classin, $registro->ptpsin, $registro->fsasin
+                    , $registro->carsin, $registro->ordsin, $registro->tomsin, $registro->pagsin
+                    , $registro->inmsin, $registro->obssin, $registro->euro, $registro->nznsin
+                    , $registro->activo, $registro->tag2, $registro->departamento
+                    , $registro->expsin, $registro->clasin, $registro->nombreagente);
+        }
+        //$consulta->closeCursor();
+        return $siniestros;
+    }
     
    
         public static function getSiniestrosJoinedTodos($cliente_id) {
@@ -265,30 +287,15 @@ class Joined implements JsonSerializable {
     } 
     
     public static function getSiniestrosJoinedByNivel($cliente_id, $nivel) {
+        $nivel = $nivel . "%";
+        
         $conexion = Conexion::connectDB();
-        $select = "SELECT * FROM siniestro WHERE clisin = ?  AND (nivel = ?";
+        $select = "SELECT * FROM siniestro WHERE clisin = ? AND nivel LIKE ?";
         
-        if($nivel=="A"){
-         $select = $select . " OR nivel = ? OR nivel = ?)";   
-        
-        }else if($nivel=="A1"){
-         $select = $select . " OR nivel = ?)";   
-            
-        }
-       
         $consulta = $conexion->prepare($select);
         
-         if($nivel=="A"){
-           $consulta->execute(array($cliente_id,$nivel,"A1","A1A"));  
-        
-        }else if($nivel=="A1"){
-          $consulta->execute(array($cliente_id,$nivel,"A1A")); 
-            
-        }else if($nivel=="A1A"){
-               $consulta->execute(array($cliente_id,$nivel));
-        }
-        
-     
+        $consulta->execute(array($cliente_id,$nivel));
+        echo "$select $nivel";
         $siniestros = [];
         
         while ($registro = $consulta->fetchObject()) {

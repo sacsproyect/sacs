@@ -68,10 +68,10 @@ if (isset($_REQUEST['exp'])) {
             $siniestros = Joined::getSiniestrosJoinedByNivel($cliente_id,$nivel);
             require_once $_SERVER['DOCUMENT_ROOT'] . '/View/listadoExpediente/index.php';
         } else if ($radioEstado == true) {
-            $siniestros = Joined::getSiniestrosJoinedEstado($radioEstado, $cliente_id);
+            $siniestros = Joined::getSiniestrosJoinedEstadoByNivel($radioEstado, $cliente_id, $nivel);
             require_once $_SERVER['DOCUMENT_ROOT'] . '/View/listadoExpediente/index.php';
         } else if ($radioEstado == false) {
-            $siniestros = Joined::getSiniestrosJoinedEstado($radioEstado, $cliente_id);
+            $siniestros = Joined::getSiniestrosJoinedEstadoByNivel($radioEstado, $cliente_id, $nivel);
         } else {
             header("Location: ../Controller/acciones.php?accion=err5 ");
         }
