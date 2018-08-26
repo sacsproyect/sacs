@@ -220,6 +220,28 @@ class Joined implements JsonSerializable {
         return $siniestros;
     } 
     
+     public static function getSiniestrosJoinedCompaniaByNivel($ciaaseguradora, $cliente_id, $nivel) {
+         $nivel = $nivel . "%";
+        $conexion = Conexion::connectDB();
+        $select = "SELECT * FROM siniestro WHERE ucase(nombreagente) LIKE ? AND clisin = ? AND nivel LIKE ?";
+        $consulta = $conexion->prepare($select);
+        $consulta->execute(array("%$ciaaseguradora%", $cliente_id, $nivel));
+        $siniestros = [];
+         
+        while ($registro = $consulta->fetchObject()) {
+        $siniestros[] = new Joined($registro->id, $registro->persin, $registro->trasin, $registro->fensin
+                    , $registro->clisin, $registro->agesin, $registro->asesin, $registro->dassin
+                    , $registro->passin, $registro->tassin, $registro->tassin2, $registro->polsin
+                    , $registro->numsin, $registro->classin, $registro->ptpsin, $registro->fsasin
+                    , $registro->carsin, $registro->ordsin, $registro->tomsin, $registro->pagsin
+                    , $registro->inmsin, $registro->obssin, $registro->euro, $registro->nznsin
+                    , $registro->activo, $registro->tag2, $registro->departamento
+                    , $registro->expsin, $registro->clasin, $registro->nombreagente);
+        }
+        $consulta->closeCursor();
+        return $siniestros;
+    } 
+    
    
         public static function getSiniestrosJoinedEstado($radioEstado, $cliente_id) {
         $conexion = Conexion::connectDB();
@@ -284,7 +306,29 @@ class Joined implements JsonSerializable {
         }
         $consulta->closeCursor();
         return $siniestros;
-    } 
+    }
+    
+     public static function getSiniestrosJoinedTodosByNivelGroupByNombreAgente($cliente_id,$nivel) {
+        $nivel = $nivel . "%";
+        $conexion = Conexion::connectDB();
+        $select = "SELECT * FROM siniestro WHERE clisin = ? AND nivel LIKE ? AND nombreagente IS NOT NULL GROUP BY nombreagente";
+        $consulta = $conexion->prepare($select);
+        $consulta->execute(array($cliente_id,$nivel));
+        $siniestros = [];
+         
+        while ($registro = $consulta->fetchObject()) {
+        $siniestros[] = new Joined($registro->id, $registro->persin, $registro->trasin, $registro->fensin
+                    , $registro->clisin, $registro->agesin, $registro->asesin, $registro->dassin
+                    , $registro->passin, $registro->tassin, $registro->tassin2, $registro->polsin
+                    , $registro->numsin, $registro->classin, $registro->ptpsin, $registro->fsasin
+                    , $registro->carsin, $registro->ordsin, $registro->tomsin, $registro->pagsin
+                    , $registro->inmsin, $registro->obssin, $registro->euro, $registro->nznsin
+                    , $registro->activo, $registro->tag2, $registro->departamento
+                    , $registro->expsin, $registro->clasin, $registro->nombreagente);
+        }
+        $consulta->closeCursor();
+        return $siniestros;
+    }
     
     public static function getSiniestrosJoinedByNivel($cliente_id, $nivel) {
         $nivel = $nivel . "%";
@@ -295,7 +339,7 @@ class Joined implements JsonSerializable {
         $consulta = $conexion->prepare($select);
         
         $consulta->execute(array($cliente_id,$nivel));
-        echo "$select $nivel";
+
         $siniestros = [];
         
         while ($registro = $consulta->fetchObject()) {

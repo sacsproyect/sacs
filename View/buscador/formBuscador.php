@@ -82,12 +82,23 @@ if (!isset($_SESSION['logueado'])) {
             <input type="date" class="searchInput noRadio" onclick="unselect()" id="fecha" name="fecha">
         </div>
     </div>
-    <div class="form-group col-sm-12 col-md-6">
-        <div class="col-sm-4 col-md-12">
-            <label for="ciaaseguradora" >Compañía</label>
-        </div>      
-        <div class="col-sm-8 col-md-12">
-            <input type="text" class="searchInput noRadio" onclick="unselect()" id="ciaaseguradora" name="ciaaseguradora" placeholder="Compañía">
+    <div>
+        <div class="form-group col-sm-12 col-md-6">
+            <div class="col-sm-4 col-md-12">
+                <label for="ciaaseguradora" >Compañía</label>
+                <select class="select-styleCompaniaBuscar searchInput" id="ciaaseguradoracliente" name="ciaaseguradora" placeholder="Compañía" onchange="unselect()" >
+                    <option value="">- Seleccionar -</option>
+                    <?php
+                    
+                    foreach ($companiasPorCliente as $companiaPorCliente) {
+                        ?>    
+                        <option value="<?= $companiaPorCliente->getNombreagente() ?>"> <?= $companiaPorCliente->getNombreagente() ?></option>
+
+                        <?php
+                    }
+                    ?>
+                </select>                
+            </div>
         </div>
     </div>
     <br>

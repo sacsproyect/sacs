@@ -62,7 +62,7 @@ if (isset($_REQUEST['exp'])) {
 
 // print_r($_POST);
 //###########################################################################################//  
-
+//FIND
     if ($radioEstado) {
         if ($radioEstado == 'todos') {
             $siniestros = Joined::getSiniestrosJoinedByNivel($cliente_id,$nivel);
@@ -164,7 +164,7 @@ if (isset($_REQUEST['exp'])) {
 
  //###########################################################################################//        
     } else if($ciaaseguradora) {
-        $siniestros = Joined::getSiniestrosJoinedCompania($ciaaseguradora, $cliente_id);
+        $siniestros = Joined::getSiniestrosJoinedCompaniaByNivel($ciaaseguradora, $cliente_id, $nivel);
         $rows = count($siniestros);
         if ($rows == 1) {
             $expsin = $siniestros[0]->getExpsin();

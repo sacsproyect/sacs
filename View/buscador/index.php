@@ -4,6 +4,14 @@ if (!isset($_SESSION['logueado'])) {
     session_destroy();
     header("Location: ../Controller/index.php");
 }
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Model/Compania.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Model/Joined.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Model/Usuario.php';
+
+
+$usuario = unserialize($_SESSION['logueado']);
+$companiasPorCliente = Joined::getSiniestrosJoinedTodosByNivelGroupByNombreAgente($usuario->getCliente_id(), $usuario->getNivel());
 ?>
 <!-- VISTA HTML 5 -->
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/View/head.php'; ?>
