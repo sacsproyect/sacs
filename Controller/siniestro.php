@@ -62,7 +62,6 @@ if (isset($_REQUEST['exp'])) {
 
 // print_r($_POST);
 //###########################################################################################//  
-//FIND
     if ($radioEstado) {
         if ($radioEstado == 'todos') {
             $siniestros = Joined::getSiniestrosJoinedByNivel($cliente_id,$nivel);
@@ -77,8 +76,9 @@ if (isset($_REQUEST['exp'])) {
         }
 
 //###########################################################################################//  
+     
     } else if ($asegurado) {
-        $siniestros = Joined::getSiniestrosJoinedAsegurado($asegurado, $cliente_id);
+        $siniestros = Joined::getSiniestrosJoinedAseguradoByNivel($asegurado, $cliente_id, $nivel);
         $rows = count($siniestros);
         if ($rows == 1) {
             $expsin = $siniestros[0]->getExpsin();
@@ -93,7 +93,7 @@ if (isset($_REQUEST['exp'])) {
 
  //###########################################################################################//     
     } else if ($numSiniestro) {
-        $siniestros = Joined::getSiniestrosJoinedNumSiniestro($numSiniestro, $cliente_id);
+        $siniestros = Joined::getSiniestrosJoinedNumSiniestroByNivel($numSiniestro, $cliente_id, $nivel);
         $rows = count($siniestros);
         if ($rows == 1) {
             $expsin = $siniestros[0]->getExpsin();
@@ -107,7 +107,7 @@ if (isset($_REQUEST['exp'])) {
         }
 //###########################################################################################// 
     } else if ($numPoliza) {
-        $siniestros = Joined::getSiniestrosJoinedNumPoliza($numPoliza, $cliente_id);
+        $siniestros = Joined::getSiniestrosJoinedNumPolizaByNivel($numPoliza, $cliente_id, $nivel);
         $rows = count($siniestros);
         if ($rows == 1) {
             $expsin = $siniestros[0]->getExpsin();
@@ -121,7 +121,7 @@ if (isset($_REQUEST['exp'])) {
         }
  //###########################################################################################//         
     } else if ($tipoSiniestro) {
-        $siniestros = Joined::getSiniestrosJoinedTipo($tipoSiniestro, $cliente_id);
+        $siniestros = Joined::getSiniestrosJoinedTipoByNivel($tipoSiniestro, $cliente_id, $nivel);
         $rows = count($siniestros);
         if ($rows == 1) {
             $expsin = $siniestros[0]->getExpsin();
@@ -135,7 +135,7 @@ if (isset($_REQUEST['exp'])) {
         }
 //###########################################################################################//         
     } else if ($telefono) {
-        $siniestros = Joined::getSiniestrosJoinedNumTelefono($telefono, $cliente_id);
+        $siniestros = Joined::getSiniestrosJoinedNumTelefonoByNivel($telefono, $cliente_id, $nivel);
         $rows = count($siniestros);
         if ($rows == 1) {
             $expsin = $siniestros[0]->getExpsin();
@@ -149,7 +149,7 @@ if (isset($_REQUEST['exp'])) {
         }
 //###########################################################################################//         
     } else if ($fecha) {
-        $siniestros = Joined::getSiniestrosJoinedFechaAltaSin($fecha, $cliente_id);
+        $siniestros = Joined::getSiniestrosJoinedFechaAltaSinByNivel($fecha, $cliente_id, $nivel);
         $rows = count($siniestros);
         if ($rows == 1) {
             $expsin = $siniestros[0]->getExpsin();
