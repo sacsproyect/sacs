@@ -185,7 +185,16 @@ rObj = function (evt) {
 
 function unselect() {
     document.querySelectorAll('[name=radioEstado]').forEach((x) => x.checked = false);
+    $('option[name=optionSeleccionar]').attr('value', 'seleccionar');
+    $("#ciaaseguradoracliente").val("seleccionar");
+
 }
+
+function cambiarValor(){
+     $('option[name=optionSeleccionar]').val('');
+}
+
+
 
 elimDivAdj = function () {
     /* evt = evento(evt);

@@ -4,7 +4,11 @@ if (!isset($_SESSION['logueado'])) {
     session_destroy();
     header("Location: ../../Controller/index.php");
 }
+
 ?>
+
+
+
 
 <h1><a href="javascript:history.back()">
         <i class="glyphicon glyphicon-arrow-left" title="Atrás"></i></a> 
@@ -86,14 +90,14 @@ if (!isset($_SESSION['logueado'])) {
         <div class="form-group col-sm-12 col-md-6">
             <div class="col-sm-4 col-md-12">
                 <label for="ciaaseguradora" >Compañía</label>
-                <select class="select-styleCompaniaBuscar searchInput" id="ciaaseguradoracliente" name="ciaaseguradora" placeholder="Compañía" onchange="unselect()" >
-                    <option value="">- Seleccionar -</option>
+                <select onclick="cambiarValor()"  class="select-styleCompaniaBuscar searchInput" id="ciaaseguradoracliente" name="ciaaseguradora" placeholder="Compañía" >
+                    <option name="optionSeleccionar"  value="">- Seleccionar -</option>
                     <?php
                     
                     foreach ($companiasPorCliente as $companiaPorCliente) {
                         ?>    
-                        <option value="<?= $companiaPorCliente->getNombreagente() ?>"> <?= $companiaPorCliente->getNombreagente() ?></option>
-
+                        <option name="opcion" value="<?= $companiaPorCliente->getNombreagente() ?>"> <?= $companiaPorCliente->getNombreagente() ?></option>
+                            
                         <?php
                     }
                     ?>
