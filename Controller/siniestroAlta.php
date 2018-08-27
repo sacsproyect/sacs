@@ -14,7 +14,7 @@ $user = unserialize($_SESSION['logueado']);
 
 $cliente_id = $user->getCliente_id();
 $cliente_sucursal_id = $user->getCliente_sucursal_id();
-$usuario = $user->getUsuario();
+$usuario = $user->getId();
 $id = $user->getId();
 
 
