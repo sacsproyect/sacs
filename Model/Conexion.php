@@ -1,10 +1,10 @@
 <?php
 abstract class Conexion {
 
-    private static $server = 'localhost';
+    private static $server = '212.225.152.200';
     private static $db = 'sacs';
-    private static $user = 'root';
-    private static $password = '';
+    private static $user = 'programacion';
+    private static $password = '111111';
 
     public static function connectDB() {
         try {
