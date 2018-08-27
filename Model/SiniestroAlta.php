@@ -31,11 +31,12 @@ class SiniestroAlta implements JsonSerializable {
     private $registro;
     private $leido_por_mayordomo;
     private $expsin;
+    private $nivel;
 
     function __construct($id, $cliente_id, $cliente_sucursal_id, $siniestro_ramo_id, $siniestro_tipo_id, $asegurado, 
             $ciaaseguradora, $poliza, $matricula, $telefono, $vip, $declaracion, $fecha, $hora,
             $terceros, $lesionados, $intervencionfi, $observaciones, $direccion, $localidad,
-            $provincia, $cp, $urgente, $usuario, $registro, $leido_por_mayordomo, $expsin) {
+            $provincia, $cp, $urgente, $usuario, $registro, $leido_por_mayordomo, $expsin, $nivel) {
                 
         $this->id = $id;
         $this->cliente_id = $cliente_id;
@@ -64,6 +65,7 @@ class SiniestroAlta implements JsonSerializable {
         $this->registro = $registro;
         $this->leido_por_mayordomo = $leido_por_mayordomo;
         $this->expsin = $expsin;
+        $this->nivel = $nivel;
     }
 
     public static function insertSiniestroAlta($datos) {
@@ -79,6 +81,25 @@ class SiniestroAlta implements JsonSerializable {
                 . "'$datos->fecha', '$datos->hora', '$datos->terceros', '$datos->lesionados', '$datos->intervencionfi', "
                 . "'$datos->observaciones', '$datos->direccion', '$datos->localidad', '$datos->provincia', '$datos->cp', "
                 . "'$datos->urgente', '$datos->usuario', '$datos->leido_por_mayordomo', '$datos->expsin')";
+        $conexion->exec($insercion);
+      
+        $lastInsertId = $conexion->lastInsertId();
+        return $lastInsertId;
+    }
+    
+    public static function insertSiniestroAltaWithNivel($datos) {
+        $conexion = Conexion::connectDB();
+        $insercion = "INSERT INTO siniestro_alta (cliente_id, cliente_sucursal_id, siniestro_ramo_id, "
+                . "siniestro_tipo_id, asegurado, ciaaseguradora, poliza, matricula, telefono, "
+                . "vip, declaracion, fecha, hora, terceros, lesionados, intervencionfi, "
+                . "observaciones, direccion, localidad, provincia, cp, urgente, usuario, "
+                . "leido_por_mayordomo, expsin, nivel) " .
+                "VALUES ('$datos->cliente_id', '$datos->cliente_sucursal_id', '$datos->siniestro_ramo_id', "
+                . "'$datos->siniestro_tipo_id', '$datos->asegurado', '$datos->ciaaseguradora', "
+                . "'$datos->poliza', '$datos->matricula', '$datos->telefono', '$datos->vip', '$datos->declaracion', "
+                . "'$datos->fecha', '$datos->hora', '$datos->terceros', '$datos->lesionados', '$datos->intervencionfi', "
+                . "'$datos->observaciones', '$datos->direccion', '$datos->localidad', '$datos->provincia', '$datos->cp', "
+                . "'$datos->urgente', '$datos->usuario', '$datos->leido_por_mayordomo', '$datos->expsin', '$datos->nivel')";
         $conexion->exec($insercion);
       
         $lastInsertId = $conexion->lastInsertId();

@@ -16,7 +16,7 @@ $cliente_id = $user->getCliente_id();
 $cliente_sucursal_id = $user->getCliente_sucursal_id();
 $usuario = $user->getId();
 $id = $user->getId();
-
+$nivel = $user->getNivel();
 
 //############### Recogemos los datos que vienen del formulario ################################## 
 
@@ -77,10 +77,10 @@ try {
     $data = new SiniestroAlta("", $cliente_id, $cliente_sucursal_id, $siniestro_ramo_id, $siniestro_tipo_id
             , $asegurado, $ciaaseguradora, $poliza, $matricula, $telefono, $vip, $declaracion, $fecha, $hora
             , $terceros, $lesionados, $intervencionfi, $observaciones, $direccion, $localidad, $provincia
-            , $cp, $urgente, $usuario, "", $leido_por_mayordomo, $expsin);
+            , $cp, $urgente, $usuario, "", $leido_por_mayordomo, $expsin,$nivel);
 
     //############### insertamos los datos en la bbdd ##################################   
-    $lastInsertId = SiniestroAlta::insertSiniestroAlta($data);
+    $lastInsertId = SiniestroAlta::insertSiniestroAltaWithNivel($data);
 
     $directorio = '../View/files/' . $id . "_" . $lastInsertId . '/';
 
