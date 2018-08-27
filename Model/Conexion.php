@@ -3,7 +3,7 @@ abstract class Conexion {
 
     private static $server = 'localhost';
     private static $db = 'sacs';
-    private static $user = 'rooot';
+    private static $user = 'root';
     private static $password = '';
 
     public static function connectDB() {
