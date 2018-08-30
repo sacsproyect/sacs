@@ -15,6 +15,7 @@ $user = unserialize($_SESSION['logueado']);
 
 $cliente_id = $user->getCliente_id();
 $usuario = $user->getUsuario();
+$nivel = $user->getNivel();
 
-$informes = Informe::getSiniestrosVip($cliente_id);
+$informes = Informe::getSiniestrosVip($cliente_id,$nivel);
 include_once $_SERVER['DOCUMENT_ROOT'].'/View/vip/index.php';  

@@ -15,6 +15,7 @@ $user = unserialize($_SESSION['logueado']);
 
 $cliente_id = $user->getCliente_id();
 $usuario = $user->getUsuario();
+$nivel = $user->getNivel();
 
-$informes = Informe::getSiniestrosDisconformidades($cliente_id);
+$informes = Informe::getSiniestrosDisconformidades($cliente_id,$nivel);
 include_once $_SERVER['DOCUMENT_ROOT'].'/View/disconformidades/index.php';  

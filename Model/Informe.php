@@ -48,13 +48,13 @@ class Informe implements JsonSerializable {
     }
    
     
-    public static function getSiniestrosCerradosEnPeriodo($cliente_id) {
+    public static function getSiniestrosCerradosEnPeriodo($cliente_id, $nivel) {
         $conexion = Conexion::connectDB();
         $select = "SELECT expsin, numsin, fensin, concat_ws(' ',asesin, concat(concat('(',ptpsin),')') ) as asesin, fecha, hora, observacion"
-                . " FROM (select siniestro_historial.*, numsin, fensin, asesin, clisin, ptpsin, fsasin, activo"
+                . " FROM (select siniestro_historial.*, numsin, fensin, asesin, clisin, ptpsin, fsasin, activo, nivel"
                 . " FROM siniestro_historial INNER JOIN siniestro on siniestro.expsin = siniestro_historial.expsin) tbl"
                 . " WHERE ref = (select max(ref) FROM siniestro_historial where tbl.expsin = expsin"
-                . " AND observacion not like '---%') AND month(fsasin) = month(now()) AND clisin= $cliente_id";       
+                . " AND observacion not like '---%') AND month(fsasin) = month(now()) AND clisin= $cliente_id AND nivel LIKE '$nivel%'";       
         $consulta = $conexion->query($select);
         
         $informes = []; 
@@ -69,13 +69,13 @@ class Informe implements JsonSerializable {
         
 } 
 
-    public static function getSiniestros40Dias($cliente_id) {
+    public static function getSiniestros40Dias($cliente_id, $nivel) {
         $conexion = Conexion::connectDB();
         $select = "SELECT expsin, numsin, fensin, concat_ws(' ',asesin, concat(concat('(',ptpsin),')') ) as asesin, fecha, hora, observacion"
-                . " FROM (select siniestro_historial.*, numsin, fensin, asesin, clisin, ptpsin, fsasin, activo"
+                . " FROM (select siniestro_historial.*, numsin, fensin, asesin, clisin, ptpsin, fsasin, activo, nivel"
                 . " FROM siniestro_historial INNER JOIN siniestro on siniestro.expsin = siniestro_historial.expsin) tbl"
                 . " WHERE ref = (select max(ref) FROM siniestro_historial where tbl.expsin = expsin"
-                . " AND observacion not like '---%') AND activo = 1 AND datediff(now(),fensin) > 40 AND clisin= $cliente_id";       
+                . " AND observacion not like '---%') AND activo = 1 AND datediff(now(),fensin) > 40 AND clisin= $cliente_id AND nivel LIKE '$nivel%'";       
         $consulta = $conexion->query($select);
         
         $informes = []; 
@@ -90,13 +90,13 @@ class Informe implements JsonSerializable {
         
 }
 
-    public static function getSiniestrosRcPymeRoboInc($cliente_id) {
+    public static function getSiniestrosRcPymeRoboInc($cliente_id, $nivel) {
         $conexion = Conexion::connectDB();
         $select = "SELECT expsin, numsin, fensin, concat_ws(' ',asesin, concat(concat('(',ptpsin),')') ) as asesin, fecha, hora, observacion"
-                . " FROM (select siniestro_historial.*, numsin, fensin, asesin, clasin, clisin, ptpsin, fsasin, activo"
+                . " FROM (select siniestro_historial.*, numsin, fensin, asesin, clasin, clisin, ptpsin, fsasin, activo, nivel"
                 . " FROM siniestro_historial INNER JOIN siniestro on siniestro.expsin = siniestro_historial.expsin) tbl"
                 . " WHERE ref = (select max(ref) FROM siniestro_historial where tbl.expsin = expsin"
-                . " AND observacion not like '---%') AND activo = 1 AND left(clasin,2) in('A ','D ','L ') and clisin= $cliente_id";       
+                . " AND observacion not like '---%') AND activo = 1 AND left(clasin,2) in('A ','D ','L ') and clisin= $cliente_id AND nivel LIKE '$nivel%'";       
         $consulta = $conexion->query($select);
         
         $informes = []; 
@@ -111,13 +111,13 @@ class Informe implements JsonSerializable {
         
 }
 
-    public static function getSiniestrosVip($cliente_id) {
+    public static function getSiniestrosVip($cliente_id, $nivel) {
         $conexion = Conexion::connectDB();
         $select = "SELECT expsin, numsin, fensin, concat_ws(' ',asesin, concat(concat('(',ptpsin),')') ) as asesin, fecha, hora, observacion"
-                . " FROM (select siniestro_historial.*, numsin, fensin, asesin, clisin, ptpsin, fsasin, activo"
+                . " FROM (select siniestro_historial.*, numsin, fensin, asesin, clisin, ptpsin, fsasin, activo, nivel"
                 . " FROM siniestro_historial INNER JOIN siniestro on siniestro.expsin = siniestro_historial.expsin) tbl"
                 . " WHERE ref = (select max(ref) FROM siniestro_historial where tbl.expsin = expsin"
-                . " AND observacion not like '---%') AND activo = 1 and ptpsin like '%VIP%' AND clisin= $cliente_id";       
+                . " AND observacion not like '---%') AND activo = 1 and ptpsin like '%VIP%' AND clisin= $cliente_id AND nivel LIKE '$nivel%'";       
         $consulta = $conexion->query($select);
         
         $informes = []; 
@@ -132,13 +132,13 @@ class Informe implements JsonSerializable {
         
 }
 
-    public static function getSiniestrosDisconformidades($cliente_id) {
+    public static function getSiniestrosDisconformidades($cliente_id, $nivel) {
         $conexion = Conexion::connectDB();
         $select = "SELECT expsin, numsin, fensin, concat_ws(' ',asesin, concat(concat('(',ptpsin),')') ) as asesin, fecha, hora, observacion"
-                . " FROM (select siniestro_historial.*, numsin, fensin, asesin, clisin, ptpsin, fsasin, activo, persin"
+                . " FROM (select siniestro_historial.*, numsin, fensin, asesin, clisin, ptpsin, fsasin, activo, persin, nivel"
                 . " FROM siniestro_historial INNER JOIN siniestro on siniestro.expsin = siniestro_historial.expsin) tbl"
                 . " WHERE ref = (select max(ref) FROM siniestro_historial where tbl.expsin = expsin"
-                . " AND observacion not like '---%') AND activo = 1 and persin = 2 AND clisin= $cliente_id";       
+                . " AND observacion not like '---%') AND activo = 1 and persin = 2 AND clisin= $cliente_id AND nivel LIKE '$nivel%'";       
         $consulta = $conexion->query($select);
         
         $informes = []; 

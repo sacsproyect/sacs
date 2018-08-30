@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/SACS_v4/Controller/index.php</file>
-            <file>file:/C:/xampp/htdocs/SACS_v4/View/js/funciones.js</file>
+            <file>file:/C:/xampp/htdocs/SACS_v4/Controller/mayorCuarentaDias.php</file>
             <file>file:/C:/xampp/htdocs/SACS_v4/Model/Joined.php</file>
-            <file>file:/C:/xampp/htdocs/SACS_v4/Model/Usuario.php</file>
-            <file>file:/C:/xampp/htdocs/SACS_v4/View/buscador/index.php</file>
-            <file>file:/C:/xampp/htdocs/SACS_v4/View/buscador/formBuscador.php</file>
-            <file>file:/C:/xampp/htdocs/SACS_v4/Controller/siniestro.php</file>
+            <file>file:/C:/xampp/htdocs/SACS_v4/Controller/disconformidades.php</file>
+            <file>file:/C:/xampp/htdocs/SACS_v4/Controller/cerradosEnPeriodo.php</file>
+            <file>file:/C:/xampp/htdocs/SACS_v4/Controller/rcPymeRoboInc.php</file>
+            <file>file:/C:/xampp/htdocs/SACS_v4/Model/Informe.php</file>
+            <file>file:/C:/xampp/htdocs/SACS_v4/Controller/vip.php</file>
         </group>
     </open-files>
 </project-private>
