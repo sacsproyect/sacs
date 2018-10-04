@@ -60,11 +60,14 @@ if (isset($_REQUEST['exp'])) {
         $ciaaseguradora = strtoupper($_POST['ciaaseguradora']);
     }
 
+
+
 // print_r($_POST);
 //###########################################################################################//  
+
     if ($radioEstado) {
         if ($radioEstado == 'todos') {
-            $siniestros = Joined::getSiniestrosJoinedByNivel($cliente_id,$nivel);
+            $siniestros = Joined::getSiniestrosJoinedByNivel($cliente_id, $nivel);
             require_once $_SERVER['DOCUMENT_ROOT'] . '/View/listadoExpediente/index.php';
         } else if ($radioEstado == true) {
             $siniestros = Joined::getSiniestrosJoinedEstadoByNivel($radioEstado, $cliente_id, $nivel);
@@ -76,7 +79,6 @@ if (isset($_REQUEST['exp'])) {
         }
 
 //###########################################################################################//  
-     
     } else if ($asegurado) {
         $siniestros = Joined::getSiniestrosJoinedAseguradoByNivel($asegurado, $cliente_id, $nivel);
         $rows = count($siniestros);
@@ -91,7 +93,7 @@ if (isset($_REQUEST['exp'])) {
             header("Location: ../Controller/acciones.php?accion=err5 ");
         }
 
- //###########################################################################################//     
+        //###########################################################################################//     
     } else if ($numSiniestro) {
         $siniestros = Joined::getSiniestrosJoinedNumSiniestroByNivel($numSiniestro, $cliente_id, $nivel);
         $rows = count($siniestros);
@@ -119,7 +121,7 @@ if (isset($_REQUEST['exp'])) {
         } else {
             header("Location: ../Controller/acciones.php?accion=err5 ");
         }
- //###########################################################################################//         
+        //###########################################################################################//         
     } else if ($tipoSiniestro) {
         $siniestros = Joined::getSiniestrosJoinedTipoByNivel($tipoSiniestro, $cliente_id, $nivel);
         $rows = count($siniestros);
@@ -162,8 +164,8 @@ if (isset($_REQUEST['exp'])) {
             header("Location: ../Controller/acciones.php?accion=err5 ");
         }
 
- //###########################################################################################//        
-    } else if($ciaaseguradora) {
+        //###########################################################################################//        
+    } else if ($ciaaseguradora) {
         $siniestros = Joined::getSiniestrosJoinedCompaniaByNivel($ciaaseguradora, $cliente_id, $nivel);
         $rows = count($siniestros);
         if ($rows == 1) {

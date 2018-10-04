@@ -1,10 +1,8 @@
 <?php
-
 if (!isset($_SESSION['logueado'])) {
     session_destroy();
     header("Location: ../../Controller/index.php");
 }
-
 ?>
 
 
@@ -90,27 +88,28 @@ if (!isset($_SESSION['logueado'])) {
         <div class="form-group col-sm-12 col-md-6">
             <div class="col-sm-4 col-md-12">
                 <label for="ciaaseguradora" >Compañía</label>
+            </div>
+            <div class="col-sm-8 col-md-12">
                 <select onclick="cambiarValor()"  class="select-styleCompaniaBuscar searchInput" id="ciaaseguradoracliente" name="ciaaseguradora" placeholder="Compañía" >
                     <option name="optionSeleccionar"  value="">- Seleccionar -</option>
                     <?php
-                    
                     foreach ($companiasPorCliente as $companiaPorCliente) {
                         ?>    
                         <option name="opcion" value="<?= $companiaPorCliente->getNombreagente() ?>"> <?= $companiaPorCliente->getNombreagente() ?></option>
-                            
+
                         <?php
                     }
                     ?>
-                </select>                
+                </select>  
             </div>
         </div>
     </div>
     <br>
-     <div class="form-group  col-sm-12 col-md-12">
-<!--        <div class="col-xs-offset-0 col-xs-12 col-sm-offset-6 col-sm-6 col-md-offset-8 col-md-4 col-lg-offset-8 col-lg-4">-->
-<!--            <div>-->
-                <button type="submit" class="botonBuscar">Buscar</button>
-<!--            </div>-->
-<!--        </div>-->
+    <div class="form-group  col-sm-12 col-md-12">
+        <!--        <div class="col-xs-offset-0 col-xs-12 col-sm-offset-6 col-sm-6 col-md-offset-8 col-md-4 col-lg-offset-8 col-lg-4">-->
+        <!--            <div>-->
+        <button type="submit" class="botonBuscar">Buscar</button>
+        <!--            </div>-->
+        <!--        </div>-->
     </div>
 </form>  
