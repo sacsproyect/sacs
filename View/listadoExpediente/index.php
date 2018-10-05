@@ -15,7 +15,7 @@ if (!isset($_SESSION['logueado'])) {
             <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/View/menu.php'; ?> 
             <div class="col-sm-8 col-md-9 ">
                 <div>                  
-					<h1><a href="javascript:history.back()">
+                    <h1><a href="javascript:history.back()">
                             <i class="glyphicon glyphicon-arrow-left" title="Atrás"></i></a> 
 
                         &nbsp; Listado &nbsp; 
@@ -40,24 +40,29 @@ if (!isset($_SESSION['logueado'])) {
                                 <tbody>
                                     <?php
                                     foreach ($siniestros as $registro) {
+                                        $activo = "";
+                                        
+                                        if ($registro->getActivo() == 0){
+                                            $activo = "gray";
+                                        }
                                         ?>
                                         <tr>
-                                            <td><a class="btnEnlace" href="../../Controller/siniestro.php?exp=<?= $registro->getExpsin() ?>"><?= $registro->getFensin() ?></a></td>
-                                            <td><a class="btnEnlace" href="../../Controller/siniestro.php?exp=<?= $registro->getExpsin() ?>"><?= strtoupper($registro->getAsesin()) ?></a></td>
-                                            <td><a class="btnEnlace" href="../../Controller/siniestro.php?exp=<?= $registro->getExpsin() ?>"><?= strtoupper($registro->getClasin()) ?></a></td>
-                                            <td><a class="btnEnlace" href="../../Controller/siniestro.php?exp=<?= $registro->getExpsin() ?>"><?= strtoupper($registro->getNumsin()) ?></a></td>
-                                            <td><a class="btnEnlace" href="../../Controller/siniestro.php?exp=<?= $registro->getExpsin() ?>"><?= strtoupper($registro->getPolsin()) ?></a></td>                                               
-                                            <td><a class="btnEnlace" href="../../Controller/siniestro.php?exp=<?= $registro->getExpsin() ?>"><?= strtoupper($registro->getNombreagente()) ?></a></td>
-                                            <td><a class="btnEnlace" href="../../Controller/siniestro.php?exp=<?= $registro->getExpsin() ?>"><?= strtoupper($registro->getTassin()) ?></a></td>         
-                                        </tr>
-                                        <?php
-                                    }
-                                    ?>
-                                </tbody>   
-                            </table>
+                                                <td><a class="btnEnlace <?= $activo ?>" href="../../Controller/siniestro.php?exp=<?= $registro->getExpsin() ?>"><?= $registro->getFensin() ?></a></td>
+                                                <td><a class="btnEnlace <?= $activo ?>" href="../../Controller/siniestro.php?exp=<?= $registro->getExpsin() ?>"><?= strtoupper($registro->getAsesin()) ?></a></td>
+                                                <td><a class="btnEnlace <?= $activo ?>" href="../../Controller/siniestro.php?exp=<?= $registro->getExpsin() ?>"><?= strtoupper($registro->getClasin()) ?></a></td>
+                                                <td><a class="btnEnlace <?= $activo ?>" href="../../Controller/siniestro.php?exp=<?= $registro->getExpsin() ?>"><?= strtoupper($registro->getNumsin()) ?></a></td>
+                                                <td><a class="btnEnlace <?= $activo ?>" href="../../Controller/siniestro.php?exp=<?= $registro->getExpsin() ?>"><?= strtoupper($registro->getPolsin()) ?></a></td>                                               
+                                                <td><a class="btnEnlace <?= $activo ?>" href="../../Controller/siniestro.php?exp=<?= $registro->getExpsin() ?>"><?= strtoupper($registro->getNombreagente()) ?></a></td>
+                                                <td><a class="btnEnlace <?= $activo ?>" href="../../Controller/siniestro.php?exp=<?= $registro->getExpsin() ?>"><?= strtoupper($registro->getTassin()) ?></a></td>         
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                    </tbody>   
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>   
-        <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/View/footer.php'; ?> 
+            </div>   
+            <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/View/footer.php'; ?> 

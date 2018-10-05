@@ -304,6 +304,11 @@ textarea{
     color: #d6d6c2;
     font-weight: 700;
 }
+
+.gray{
+    color: gray;
+/*    font-weight: 700;*/
+}
     
 /*########## QUERIES ###############*/
 
