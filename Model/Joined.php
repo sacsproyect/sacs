@@ -35,7 +35,10 @@ class Joined implements JsonSerializable {
     private $clasin;
     private $nombreagente;
 
-    function __construct($id, $persin, $trasin, $fensin, $clisin, $agesin, $asesin, $dassin, $passin, $tassin, $tassin2, $polsin, $numsin, $classin, $ptpsin, $fsasin, $carsin, $ordsin, $tomsin, $pagsin, $inmsin, $obssin, $euro, $nznsin, $activo, $tag2, $departamento, $expsin, $clasin, $nombreagente) {
+    function __construct($id, $persin, $trasin, $fensin, $clisin, $agesin, $asesin, $dassin
+    , $passin, $tassin, $tassin2, $polsin, $numsin, $classin, $ptpsin, $fsasin, $carsin
+    , $ordsin, $tomsin, $pagsin, $inmsin, $obssin, $euro, $nznsin, $activo, $tag2
+    , $departamento, $expsin, $clasin, $nombreagente) {
 
         $this->id = $id;
         $this->persin = $persin;
@@ -88,13 +91,13 @@ class Joined implements JsonSerializable {
         $consulta->closeCursor();
         return $siniestros;
     }
-    
+
     public static function getSiniestrosJoinedAseguradoByNivel($asegurado, $cliente_id, $nivel) {
         $nivel = $nivel . "%";
         $conexion = Conexion::connectDB();
         $select = "SELECT * FROM siniestro WHERE ucase(asesin) LIKE ? AND nivel LIKE ? AND clisin = ?";
         $consulta = $conexion->prepare($select);
-        $consulta->execute(array("%$asegurado%",$nivel, $cliente_id));
+        $consulta->execute(array("%$asegurado%", $nivel, $cliente_id));
         $siniestros = [];
         while ($registro = $consulta->fetchObject()) {
             $siniestros[] = new Joined($registro->id, $registro->persin, $registro->trasin, $registro->fensin
@@ -129,14 +132,14 @@ class Joined implements JsonSerializable {
         $consulta->closeCursor();
         return $siniestros;
     }
-    
+
     public static function getSiniestrosJoinedNumSiniestroByNivel($numSiniestro, $cliente_id, $nivel) {
-        
+
         $nivel = $nivel . "%";
         $conexion = Conexion::connectDB();
         $select = "SELECT * FROM siniestro WHERE ucase(numsin) LIKE ? AND nivel LIKE ? AND clisin = ?";
         $consulta = $conexion->prepare($select);
-        $consulta->execute(array("%$numSiniestro%",$nivel, $cliente_id));
+        $consulta->execute(array("%$numSiniestro%", $nivel, $cliente_id));
         $siniestros = [];
         while ($registro = $consulta->fetchObject()) {
             $siniestros[] = new Joined($registro->id, $registro->persin, $registro->trasin, $registro->fensin
@@ -171,9 +174,9 @@ class Joined implements JsonSerializable {
         $consulta->closeCursor();
         return $siniestros;
     }
-    
+
     public static function getSiniestrosJoinedNumPolizaByNivel($numPoliza, $cliente_id, $nivel) {
-        
+
         $nivel = $nivel . "%";
         $conexion = Conexion::connectDB();
         $select = "SELECT * FROM siniestro WHERE ucase(polsin) LIKE ? AND nivel LIKE ? AND clisin = ?";
@@ -215,8 +218,8 @@ class Joined implements JsonSerializable {
         return $siniestros;
     }
 
-    public static function getSiniestrosJoinedTipoByNivel($tipoSiniestro, $cliente_id, $nivel ) {
-        
+    public static function getSiniestrosJoinedTipoByNivel($tipoSiniestro, $cliente_id, $nivel) {
+
         $nivel = $nivel . "%";
         $conexion = Conexion::connectDB();
         $select = "SELECT * FROM siniestro WHERE ucase(clasin) LIKE ? AND nivel LIKE ? AND clisin = ?";
@@ -259,8 +262,8 @@ class Joined implements JsonSerializable {
         return $siniestros;
     }
 
-        public static function getSiniestrosJoinedNumTelefonoByNivel($telefono, $cliente_id, $nivel) {
-            
+    public static function getSiniestrosJoinedNumTelefonoByNivel($telefono, $cliente_id, $nivel) {
+
         $nivel = $nivel . "%";
         $conexion = Conexion::connectDB();
         $select = "SELECT * FROM siniestro WHERE ucase(tassin) LIKE ? AND nivel LIKE ? AND clisin = ?";
@@ -281,8 +284,7 @@ class Joined implements JsonSerializable {
         $consulta->closeCursor();
         return $siniestros;
     }
-    
-    
+
     public static function getSiniestrosJoinedFechaAltaSin($fecha, $cliente_id) {
         $conexion = Conexion::connectDB();
         $select = "SELECT * FROM siniestro WHERE fensin = ? AND clisin = ?";
@@ -303,9 +305,9 @@ class Joined implements JsonSerializable {
         $consulta->closeCursor();
         return $siniestros;
     }
-    
-    public static function getSiniestrosJoinedFechaAltaSinByNivel($fecha, $cliente_id, $nivel ) {
-        
+
+    public static function getSiniestrosJoinedFechaAltaSinByNivel($fecha, $cliente_id, $nivel) {
+
         $nivel = $nivel . "%";
         $conexion = Conexion::connectDB();
         $select = "SELECT * FROM siniestro WHERE fensin = ? AND nivel LIKE ? AND clisin = ?";

@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/xampp/htdocs/SACS_v4/Controller/index.php</file>
-            <file>file:/C:/xampp/htdocs/SACS_v4/View/js/funciones.js</file>
-            <file>file:/C:/xampp/htdocs/SACS_v4/Model/InformeGeneral.php</file>
-            <file>file:/C:/xampp/htdocs/SACS_v4/Model/Joined.php</file>
-            <file>file:/C:/xampp/htdocs/SACS_v4/Model/Usuario.php</file>
-            <file>file:/C:/xampp/htdocs/SACS_v4/View/home/index.php</file>
-            <file>file:/C:/xampp/htdocs/SACS_v4/View/buscador/formBuscador.php</file>
-            <file>file:/C:/xampp/htdocs/SACS_v4/Controller/siniestro.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

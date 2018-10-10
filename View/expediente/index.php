@@ -1,5 +1,4 @@
 <?php
-
 ini_set('error_reporting', 0);
 if (!isset($_SESSION['logueado'])) {
     session_destroy();
@@ -8,6 +7,8 @@ if (!isset($_SESSION['logueado'])) {
 ?>
 <!-- VISTA HTML 5 -->
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/View/head.php'; ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/View/mensajeExpediente/index.php'; ?>
+
 <body>
     <div class="container-fluid"> 
         <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/View/header.php'; ?>
@@ -15,6 +16,10 @@ if (!isset($_SESSION['logueado'])) {
             <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/View/menu.php'; ?> 
             <div class="col-sm-8 col-md-9 ">
                 <br> 
+
+                <div class="nuevaBusqueda">          
+                    <a href="../Controller/buscador.php" class="btn btn-primary btn-xs" role="button">Nueva Busqueda</a>
+                </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
                         Asegurado:<input type="text" value="<?= strtoupper($siniestro->getAsesin()) ?>" readonly="">
@@ -29,11 +34,36 @@ if (!isset($_SESSION['logueado'])) {
                         Fecha:<input type="text" value="<?= $siniestro->getFensin() ?>" readonly="">
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
-                    <h1>Expediente nº <?= $expsin; ?></h1>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">                        
+                    <h1>
+                        <a onclick="cambiarBoton(); return false" class="btn btn-primary btn-xs" role="button">+ INFO </a>     
+
+                        &nbsp;&nbsp;&nbsp;Expediente nº <?= $expsin; ?>&nbsp;&nbsp;&nbsp
+
+                        <a class="btn btn-primary btn-xs" title="Enviar mensaje" role="button" onclick="funcionPrueba2()" data-toggle="modal" data-target="#myModal">
+                            <i class="glyphicon glyphicon-envelope"> </i>
+                            MENSAJE 
+                        </a>  
+                        <script type="text/javascript">
+                         function funcionPrueba2() {
+                           tituloModal.innerHTML ="<b>Contenido del mensaje:</b>";
+                           textareaModal.style.display = "";
+                           textareaModal.value = "";
+                           footerModal.style.display = "";
+                     
+                        };
+                        </script>
+                    </h1> 
                 </div>
-                <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2 back">          
-                    <a href="../Controller/buscador.php" class="btn btn-primary btn-xs" role="button">Nueva Busqueda</a>
+
+                <div name="otraInfoExpediente" id="otraInfoExpediente" style="display:none" >
+
+                    <h2>Otra Información relativa al expediente</h2>
+
+                    <p class="otraInfoExpe"><?= nl2br($siniestro->getObssin()) ?>
+                    </p>
+
+                    <br>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="table-responsive">

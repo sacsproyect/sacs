@@ -1,8 +1,8 @@
 
 $(document).ready(function () {
-
+    var valido;
     $('.searchInput').click(function () {
-
+        
         var tipo = $(this).attr('type');
         $('input:radio[name=radioEstado]').attr('checked', false);
         //console.log(tipo);
@@ -53,7 +53,7 @@ $(document).ready(function () {
             addCampo();
         }
     });
-    
+
     $('#checkbox4').click(function () {
         if (!$(this).prop('checked')) {
             $('.ocultar4').show("slow");
@@ -61,40 +61,6 @@ $(document).ready(function () {
             $('.ocultar4').hide("slow");
         }
     });
-
-//#############################################################
-
-    /*
-     
-     $.fn.checkFileType = function (options) {
-     var defaults = {
-     allowedExtensions: [],
-     success: function () {},
-     error: function () {}
-     };
-     options = $.extend(defaults, options);
-     
-     return this.each(function () {
-     
-     $(this).on('change', function () {
-     var value = $(this).val(),
-     file = value.toLowerCase(),
-     extension = file.substring(file.lastIndexOf('.') + 1);
-     
-     if ($.inArray(extension, options.allowedExtensions) === -1) {
-     options.error();
-     $(this).focus();
-     } else {
-     options.success();
-     
-     }
-     
-     });
-     
-     });
-     };
-     
-     */
 
     $("input.fup").each(function () {
 
@@ -109,7 +75,7 @@ $(document).ready(function () {
         $(".fup").css("border-color", "#F0F0F0");
 
 
-
+       
         // if ((ext !== ".jpg" || ext !== ".png" || ext !== ".gif" || ext !== ".jpeg" || ext !== ".pdf") && (file_size < 5097152)) {
         if (file_size > 5097152) {
             $("#file_error").html("El archivo supera los 5MB o no es pdf o imagen");
@@ -124,15 +90,15 @@ $(document).ready(function () {
             return true;
         }
     });
-    
-   //Ahora validamos el formulario
- 
-if(valido === false){
-    alert("La extensión " + ext + " no es una imagen");
-}
+
+    //Ahora validamos el formulario
+
+    if (valido === false) {
+        alert("La extensión " + ext + " no es una imagen");
+    }
 
 
-    
+
 
 });// ready
 
@@ -171,7 +137,38 @@ addCampo = function () {
     container = document.getElementById('adjuntos');
     container.appendChild(nDiv);
 };
+
+// FUNCION PARA cambiar de estado el boton de +info dentro de expediente 
+//  mostrar y ocultar elemento "otraInfoExpediente" 
+
+cambiarBoton = function () {
+
+    var botonInfo = document.getElementById("otraInfoExpediente");
+    if (botonInfo.style.display === "block") {
+        botonInfo.style.display = "none";
+    } else {
+        botonInfo.style.display = "block";
+    }
+};
+//cambiarBoton = function () {
+//
+//    var botonInfo = document.getElementById("otraInfoExpediente");
+//
+//    if (botonInfo.getAttribute("style") === "display:none") {
+//        botonInfo.setAttribute("style", "display:block");
+//    } else {
+//       botonInfo.setAttribute("style", "display:none");
+//    }
+//
+//};
+
 //con esta función eliminamos el campo cuyo link de eliminación sea presionado 
+
+//
+//$(function () {
+//    $("#myModal").draggable();
+//});
+
 elimCamp = function (evt) {
     evt = evento(evt);
     nCampo = rObj(evt);
@@ -182,16 +179,14 @@ elimCamp = function (evt) {
 rObj = function (evt) {
     return evt.srcElement ? evt.srcElement : evt.target;
 };
-
 function unselect() {
     document.querySelectorAll('[name=radioEstado]').forEach((x) => x.checked = false);
     $('option[name=optionSeleccionar]').attr('value', 'seleccionar');
     $("#ciaaseguradoracliente").val("seleccionar");
-
 }
 
-function cambiarValor(){
-     $('option[name=optionSeleccionar]').val('');
+function cambiarValor() {
+    $('option[name=optionSeleccionar]').val('');
 }
 
 
@@ -202,15 +197,10 @@ elimDivAdj = function () {
     div = document.getElementById(nDiv.id);
     div.parentNode.removeChild(div);
 };
-
-
-
 function validate() {
     $("#file_error").html("");
     $(".fup").css("border-color", "#F0F0F0");
-
     var file_size = $('.fup')[0].files[0].size;
-
     // var extensionesPermitidas = new Array(".jpg", ".jpeg", ".png", ".gif", ".pdf");
     if (file_size > 5097152) {
         $("#file_error").html("El archivo supera los 5MB");
@@ -223,7 +213,7 @@ function validate() {
 
 //function validate() {
 
-  //  var extensionesPermitidas = new Array(".jpg", ".jpeg", ".png", ".gif", ".pdf");
+//  var extensionesPermitidas = new Array(".jpg", ".jpeg", ".png", ".gif", ".pdf");
 
 //    $("input.fup").each(function () {
 //

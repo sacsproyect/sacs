@@ -59,6 +59,10 @@ if (isset($_REQUEST['exp'])) {
     if (isset($_POST['ciaaseguradora'])) {
         $ciaaseguradora = strtoupper($_POST['ciaaseguradora']);
     }
+    
+//    if (isset($_POST['obssin'])) {
+//        $ciaaseguradora = strtoupper($_POST['obssin']);
+//    }
 
 
 
