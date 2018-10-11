@@ -17,7 +17,7 @@ $user = unserialize($_SESSION['logueado']);
 $expsin = $_POST['expSin'];
 $registro = $_POST['registro'];
 $mensajeExpediente = $_POST['mensajeExpediente'];
-$usuario = $user->getUsuario();
+$usuario = $user->getId();
 
 try {
 
